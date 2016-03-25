@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>VidBox</title>
+</head>
+<body>
+	<div ng-controller='youtubeController' class="container-fluid">
+		<nav class="col-md-12 border1 navbar-header">
+			<h2 class="col-md-4">VidBox</h2>
+				<form class="navbar-form form navbar-left col-md-8">
+					<input class="input" type="text" value="search here" ng-model="newvideo.video">
+					<button type="submit" ng-click="search()"class="button1 btn btn-info btn-lg">
+						<i class="glyphicon glyphicon-search"></i>
+					</button>
+				</form>
+		</nav>
+
+		<div class="col-md-6 results ">
+			<div class="video border1" ng-click="addVideo(x)" ng-repeat="x in video">
+				<img class="image"src="{{x.snippet.thumbnails.default.url}}">
+				<p class="videoTitle">{{x.snippet.title}} </p>
+				<p class="channelTitle">{{x.snippet.channelTitle}} </p>
+				<p class="description">{{x.snippet.description}}</p>
+			</div>
+		</div>
+
+		<div class="blank col-md-6" ng-if="!vid">
+		</div>
+
+		<div class="player  col-md-6" ng-if="vid"> 
+			<youtube-video video-id="vid" player-width="'100%'" player-height="'100%'"></youtube-video>
+		</div>
+
+		<div class="col-md-6 playlist">
+			<table class=" col-md-12 table">
+				<tr class="row" ng-repeat="x in list">
+					<td class="col-md-11 data border">
+						<p class="list " ng-click="playSong(x)">{{x.name.snippet.title}}</p>
+					</td> 
+					<td class="col-md-1 border data1">
+						<p class="delete " ng-click="deleteVideo(x)">Delete</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
